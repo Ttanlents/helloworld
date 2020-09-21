@@ -25,14 +25,18 @@ public class AdminService implements AdminDao {
     public Admin select(String name) {
         Connection conn = JdbcUtils.getConn();
         String sql = "select * from admin where name=?";
+        ResultSet resultSet=null;
+        PreparedStatement statement=null;
         try {
-            PreparedStatement statement = conn.prepareStatement(sql);
+             statement = conn.prepareStatement(sql);
             statement.setObject(1, name);
-            ResultSet resultSet = statement.executeQuery();
+             resultSet = statement.executeQuery();
             return getAdmin(resultSet);
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JdbcUtils.close(resultSet,statement,conn);
         }
         return new Admin();
     }
@@ -41,15 +45,19 @@ public class AdminService implements AdminDao {
     public Admin selectByNameAndPwd(String name, String password) {
         Connection conn = JdbcUtils.getConn();
         String sql = "select * from admin where name=? and `password`=?";
+        ResultSet resultSet=null;
+        PreparedStatement statement=null;
         try {
-            PreparedStatement statement = conn.prepareStatement(sql);
+             statement = conn.prepareStatement(sql);
             statement.setObject(1, name);
             statement.setObject(2, password);
-            ResultSet resultSet = statement.executeQuery();
+             resultSet = statement.executeQuery();
             return getAdmin(resultSet);
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JdbcUtils.close(resultSet,statement,conn);
         }
         return null;
     }

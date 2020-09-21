@@ -32,6 +32,7 @@
     <a href="toAddUser">添加</a>&nbsp;&nbsp;&nbsp;
     当前在线人数：${count}&nbsp;&nbsp; <c:if test="${session_name!=null}">当前用户：${session_name}</c:if>
     <c:if test="${session_name==null}">您还未登录，请先登录哦！</c:if>&nbsp;&nbsp;&nbsp; <a href="loginOut">退出登录</a>
+    &nbsp;&nbsp; <a href="area.jsp">地区选择</a>
 
   </div>
   <br/>
