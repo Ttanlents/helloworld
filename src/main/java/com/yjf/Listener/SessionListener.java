@@ -17,8 +17,6 @@ public class SessionListener implements HttpSessionAttributeListener {
 
     public SessionListener() {
         super();
-
-        System.out.println("session属性监听器初始化完成");
     }
 
     @Override
@@ -27,9 +25,9 @@ public class SessionListener implements HttpSessionAttributeListener {
         ServletContext application = se.getSession().getServletContext();
         if (Objects.equals(se.getName(), Constans.SESSION_NAME)){
              number =(int) application.getAttribute(Constans.COUNT);
-            System.out.println("原来的人数"+number);
+           // System.out.println("原来的人数"+number);
             application.setAttribute(Constans.COUNT,++number);
-            System.out.println("当前"+application.getAttribute(Constans.COUNT));
+           // System.out.println("当前"+application.getAttribute(Constans.COUNT));
         }
     }
 

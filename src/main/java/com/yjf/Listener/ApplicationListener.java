@@ -18,7 +18,6 @@ public class ApplicationListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         sce.getServletContext().setAttribute(Constans.COUNT, 0);
-        System.out.println("application初始化完成");
     }
 
     @Override

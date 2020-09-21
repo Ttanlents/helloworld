@@ -34,7 +34,6 @@ public class SelectServlet extends HttpServlet {
             pageCurrent=Integer.parseInt(pagStr);
         }
         int count = userDao.selectCount(name);
-        System.out.println("传值："+pageCurrent);
         Page<List<User>> page=new Page<>(pageCurrent,4,count);
         List<User> list = userDao.selectAll(name, page);
         page.setData(list);

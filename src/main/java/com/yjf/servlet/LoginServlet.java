@@ -1,9 +1,12 @@
 package com.yjf.servlet;
 
 import com.yjf.Constants.Constans;
+import com.yjf.entity.Admin;
 import com.yjf.entity.Page;
 import com.yjf.entity.User;
+import com.yjf.service.AdminService;
 import com.yjf.service.UserService;
+import com.yjf.userdao.AdminDao;
 import com.yjf.userdao.UserDao;
 
 import javax.servlet.ServletConfig;
@@ -22,6 +25,7 @@ import java.util.Objects;
 @WebServlet(value ="/login")
 public class LoginServlet extends HttpServlet {
     UserDao userDao = new UserService();
+    AdminDao adminDao=new AdminService();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +37,8 @@ public class LoginServlet extends HttpServlet {
         if (rememberNumber != null) {
             number = Integer.parseInt(rememberNumber);
         }
-        if (Objects.equals(name1, "admin") && Objects.equals(password, "123456")) {
+        Admin admin = adminDao.selectByNameAndPwd(name1, password);
+        if (admin!=null&&admin.getId()!=null) {
             int time = 0;
             Cookie cookie1 = new Cookie("name", "admin");
             Cookie cookie2 = new Cookie("password", "123456");
@@ -56,6 +61,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("登录成功存储登录名字"+name1+"  "+session.getId());
             login(req, resp);
         } else {
+            resp.setHeader("refresh","2;url=index.jsp");
             resp.getOutputStream().write("账号或密码错误！".getBytes());
         }
 
@@ -78,7 +84,5 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        System.out.println("初始化login完成");
-
     }
 }

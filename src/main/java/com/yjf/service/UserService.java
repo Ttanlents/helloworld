@@ -104,7 +104,6 @@ public class UserService implements UserDao {
         try {
             statement = conn.prepareStatement(sql);
             statement.setObject(1, name);
-            System.out.println("当前页码："+page.getPageCurrent());
             statement.setObject(2, (page.getPageCurrent() - 1) * page.getPageSize());
             statement.setObject(3, page.getPageSize());
             resultSet = statement.executeQuery();

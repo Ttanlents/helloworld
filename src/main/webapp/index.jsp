@@ -25,6 +25,9 @@
         <option value="3">30天</option>
     </select>
     <input type="submit" value="登录"/>
+    <span>
+    <a href="register.jsp">注册</a>
+    </span>
 </form>
 </fieldset>
 </body>

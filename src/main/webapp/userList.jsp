@@ -80,9 +80,6 @@
       <br/>
       当前${page.pageCurrent}页，每页${page.pageSize}条，共${page.count}条记录，共${page.pageTotal}页
     </div>
-    <div id="div2">
-  <%--<a href="register.jsp">返回添加</a>--%>
-    </div>
   </body>
 <script>
 
